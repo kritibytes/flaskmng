@@ -8,3 +8,7 @@ def manager():
 @manager.command("startproject")
 def startproject_command():
     print("STARTING PROJECT")
+
+@manager.command("newapp")
+def startproject_command():
+    print("NEW APP")
