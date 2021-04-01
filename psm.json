@@ -1,1 +1,1 @@
-{"scripts": {"build": {"command": "python setup.py sdist bdist_wheel", "description": "Build package"}, "publish": {"command": "python -m twine upload --repository-url https://upload.pypi.org/legacy/ dist/*", "description": "Publish to pypi"}}, "version": "0.0.1"}
+{"scripts": {"build": {"command": "python setup.py sdist bdist_wheel", "description": "Build package"}, "deploy": {"command": "python -m twine upload --repository-url https://upload.pypi.org/legacy/ dist/*", "description": "Publish to pypi"}}, "version": "0.0.1"}
