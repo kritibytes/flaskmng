@@ -1,5 +1,5 @@
 import click
-from ..globals import MultiCommand
+from ..utils import MultiCommand
 
 @click.group(cls=MultiCommand)
 def manager():
