@@ -13,14 +13,14 @@ def parse_requirements(filename):
 reqs = parse_requirements('requirements.txt')
 
 setuptools.setup(
-    name="flaskmng",
+    name=psm.get_name(),
     version=psm.get_version(),
-    author="Kritibytes",
-    author_email="kritibytes@gmail.com",
-    description="Tool that makes managing Flask easy.",
+    author=psm.get_author(),
+    author_email=psm.get_author_email(),
+    description=psm.get_description(),
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/Kritibytes/flaskmng",
+    url=psm.get_url(),
     packages=setuptools.find_packages(),
     install_requires=reqs,
     classifiers=[
