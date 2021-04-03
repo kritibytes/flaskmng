@@ -1,10 +1,10 @@
 import sys
 import click
 
-from .manager import manager
+from .startproject import startproject
 
 commands = [
-    manager
+    startproject
 ]
 
 
