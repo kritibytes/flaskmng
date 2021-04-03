@@ -1,6 +1,8 @@
 venv
+env
 .vscode
 build
 dist
 flaskmng.egg-info
 .pytest_cache
+**/__pycache__
