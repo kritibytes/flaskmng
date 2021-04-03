@@ -1,4 +1,5 @@
 import click
+import os
 
 class MultiCommand(click.Group):
     def command(self, *args, **kwargs):
@@ -18,3 +19,9 @@ class MultiCommand(click.Group):
                 *_args, **kwargs)(f)
             return cmd
         return decorator
+
+def command_process_step(start_text, command, finish_text):
+    print(start_text)
+    print(f">> {command}")
+    os.system(command)
+    print(finish_text)
