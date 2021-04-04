@@ -1,7 +1,6 @@
 def write_requirements():
     with open("requirements.txt", "w") as f:
-        reqs_text =\
-        '''\
+        reqs_text = '''\
 alembic
 astroid
 bcrypt
@@ -37,5 +36,29 @@ toml
 Werkzeug
 wrapt
 WTForms
-        '''
+wheel
+'''
         f.write(reqs_text)
+
+
+def create_gitignore():
+    with open('.gitignore', 'w') as f:
+        ignore_text = """\
+venv
+**/__pycache__
+site.db
+migrations/versions/**/*
+"""
+        f.write(ignore_text)
+
+def create_app_py(name):
+    def wrapper():
+        with open('app.py','w') as f:
+            app_py_text = f"""\
+from {name} import app
+
+if __name__=='__main__':
+    app.run(debug=True)            
+"""
+            f.write(app_py_text)
+    return wrapper
