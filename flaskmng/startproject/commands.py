@@ -1,8 +1,22 @@
 import os
 import click
-from ..utils import MultiCommand, command_process_step, clear_screen, process_ok, process_step, create_folder
-from .utils import write_requirements
 from python_script_manager.package import PSMReader
+from ..utils import (
+    MultiCommand,
+    command_process_step,
+    clear_screen,
+    process_ok,
+    process_step,
+    create_folder
+)
+from .utils import (
+    create_static_folders,
+    create_init_py,
+    create_config_py,
+    create_app_py,
+    write_requirements,
+    create_gitignore
+)
 
 
 @click.group(cls=MultiCommand)
@@ -26,7 +40,7 @@ def startproject_command():
                          'psm init --template="blank"')
     processes.append("Initialized PSM")
     process_ok(processes)
-    
+
     # Create config field
     psm = PSMReader('psm.json')
     psm_config = psm.get_config()
@@ -41,12 +55,39 @@ def startproject_command():
 
     # Installing requirements.txt
     command_process_step("Installing requirements.txt...",
-                         'psm install')
+                         'psm install && psm freeze')
     processes.append("Installed requirements.txt")
     process_ok(processes)
 
     # Creating main app folder
     process_step("Creating project folder...",
-                        create_folder(psm.get_name()))
+                 create_folder(psm.get_name()))
     processes.append("Created project folder")
     process_ok(processes)
+
+    # Creating .gitignore
+    process_step("Creating .gitignore...", create_gitignore)
+    processes.append("Created .gitignore")
+    process_ok(processes)
+
+    # Creating app.py
+    process_step("Creating app.py...", create_app_py(psm.get_name()))
+    processes.append("Created app.py")
+    process_ok(processes)
+
+    # Creating config.py
+    process_step("Creating config.py...", create_config_py)
+    processes.append("Created config.py")
+    process_ok(processes)
+
+    # Creating project __init__.py
+    process_step(f"Creating {psm.get_name()}/__init__.py...", create_init_py(psm.get_name()))
+    processes.append(f"Created {psm.get_name()}/__init__.py")
+    process_ok(processes)
+
+    # Creating js, css, image folders
+    process_step(f"Creating {psm.get_name()}/static folder...", create_static_folders(psm.get_name()))
+    processes.append(f"Created {psm.get_name()}/static folder")
+    process_ok(processes)
+
+    
