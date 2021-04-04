@@ -1,7 +1,7 @@
 import os
 import click
-from ..utils import MultiCommand, command_process_step, clear_screen, process_ok
-from .utils import border
+from ..utils import MultiCommand, command_process_step, clear_screen, process_ok, process_step, create_folder
+from .utils import write_requirements
 from python_script_manager.package import PSMReader
 
 
@@ -33,3 +33,20 @@ def startproject_command():
     psm_config["APPS"] = []
     psm.set_config(psm_config)
     psm.write()
+
+    # Creating requirements.txt
+    process_step("Creating requirements.txt", write_requirements)
+    processes.append("Created requirements.txt")
+    process_ok(processes)
+
+    # Installing requirements.txt
+    command_process_step("Installing requirements.txt...",
+                         'psm install')
+    processes.append("Installed requirements.txt")
+    process_ok(processes)
+
+    # Creating main app folder
+    process_step("Creating project folder...",
+                        create_folder(psm.get_name()))
+    processes.append("Created project folder")
+    process_ok(processes)

@@ -41,3 +41,12 @@ def process_ok(finished_process):
     print(text)
     for i in finished_process:
         print("✔ "+i)
+
+def process_step(start_text, func):
+    print("⌛ "+start_text+"\n")
+    func()
+
+def create_folder(folder_name):
+    def wrapper():
+        os.mkdir(folder_name)
+    return wrapper
