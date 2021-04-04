@@ -1,7 +1,7 @@
 def write_requirements():
     with open("requirements.txt", "w") as f:
         reqs_text =\
-        '''\
+'''\
 alembic
 astroid
 bcrypt
