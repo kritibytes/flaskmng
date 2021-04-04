@@ -20,10 +20,11 @@ prettytable==2.0.0
 py==1.10.0
 pycodestyle==2.6.0
 pycparser==2.20
+pyfiglet==0.8.post1
 Pygments==2.7.3
 pyparsing==2.4.7
 pytest==6.2.2
-python-script-manager==1.0.9
+python-script-manager==1.1.0
 readme-renderer==28.0
 requests==2.25.1
 requests-toolbelt==0.9.1
