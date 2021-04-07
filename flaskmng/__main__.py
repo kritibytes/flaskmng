@@ -2,9 +2,11 @@ import sys
 import click
 
 from .startproject import startproject
+from .startapp import startapp
 
 commands = [
-    startproject
+    startproject,
+    startapp
 ]
 
 

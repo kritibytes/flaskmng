@@ -5,6 +5,7 @@ import sys
 import time
 import pyfiglet
 import re
+from PyInquirer import prompt
 
 
 class MultiCommand(click.Group):
@@ -92,7 +93,21 @@ def make_compatible(name):
         result += ch
     return result
 
+
 def hl(name):
     if supports_color():
         return f"\033[94m{name}\033[0m"
     return f"\"{name}\""
+
+
+def take_input(text):
+    questions = [
+        {
+            'type':'input',
+            'name':'data',
+            'message':text
+        }
+    ]
+
+    answers = prompt(questions)
+    return answers['data']

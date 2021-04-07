@@ -64,30 +64,30 @@ def startproject_command():
     process_ok(processes)
 
     # Installing requirements.txt
-    command_process_step("Installing {hl('requirements.txt')}...",
+    command_process_step(f"Installing {hl('requirements.txt')}...",
                         'psm install && psm freeze')
-    processes.append("Installed {hl('requirements.txt')}")
+    processes.append(f"Installed {hl('requirements.txt')}")
     process_ok(processes)
 
     # Creating main app folder
-    process_step("Creating {hl(prj_name)} folder...",
+    process_step(f"Creating {hl(prj_name)} folder...",
                 create_folder(prj_name))
-    processes.append("Created {hl(prj_name)} folder")
+    processes.append(f"Created {hl(prj_name)} folder")
     process_ok(processes)
 
     # Creating .gitignore
-    process_step("Creating {hl('.gitignore')}...", create_gitignore)
-    processes.append("Created {hl('.gitignore')}")
+    process_step(f"Creating {hl('.gitignore')}...", create_gitignore)
+    processes.append(f"Created {hl('.gitignore')}")
     process_ok(processes)
 
     # Creating app.py
-    process_step("Creating {hl('app.py')}...", create_app_py(prj_name))
-    processes.append("Created {hl('app.py')}")
+    process_step(f"Creating {hl('app.py')}...", create_app_py(prj_name))
+    processes.append(f"Created {hl('app.py')}")
     process_ok(processes)
 
     # Creating config.py
-    process_step("Creating config.py...", create_config_py)
-    processes.append("Created config.py")
+    process_step(f"Creating {hl('config.py')}...", create_config_py)
+    processes.append(f"Created {hl('config.py')}")
     process_ok(processes)
 
     # Creating project __init__.py
@@ -124,5 +124,5 @@ def startproject_command():
     process_ok(processes)
 
     # Output success message
-    success_message(f"Successfully created project {hl('prj_name')}")
-    info_message("Use {hl('psm run')} to run your application")
+    success_message(f"Successfully created project {hl(prj_name)}")
+    info_message(f"Use {hl('psm run')} to run your application")
