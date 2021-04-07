@@ -38,3 +38,16 @@ def index():
             """
             f.write(body_text)
     return wrapper
+
+def append_app_datas(prj_name, app_name):
+    def wrapper():
+        with open(join(prj_name,"__init__.py"), "a") as f:
+            body_text = f"""
+#[APP] {app_name}
+from .{app_name}.models import *
+from .{app_name}.routes import {app_name}
+app.register_blueprint({app_name})
+#[/APP] {app_name}
+            """
+            f. write(body_text)
+    return wrapper
