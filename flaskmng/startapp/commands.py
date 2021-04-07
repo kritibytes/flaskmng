@@ -14,9 +14,11 @@ from ..utils import (
     hl,
     take_input
 )
-
-from .utils import(
-    create_app_init_py
+from .utils import (
+    create_app_init_py,
+    create_models_py,
+    create_forms_py,
+    create_routes_py
 )
 
 
@@ -58,3 +60,20 @@ def startapp_command():
     processes.append(f"Created {hl(join(prj_name, app_name, 'templates'))} folder")
     process_ok(processes)
     
+    # Creating models.py
+    process_step(f"Creating {hl(join(prj_name, app_name, 'models.py'))}...",
+                create_models_py(join(prj_name, app_name)))
+    processes.append(f"Created {hl(join(prj_name, app_name, 'models.py'))}")
+    process_ok(processes)
+
+    # Creating forms.py
+    process_step(f"Creating {hl(join(prj_name, app_name, 'forms.py'))}...",
+                create_forms_py(join(prj_name, app_name)))
+    processes.append(f"Created {hl(join(prj_name, app_name, 'forms.py'))}")
+    process_ok(processes)
+
+    # Creating routes.py
+    process_step(f"Creating {hl(join(prj_name, app_name, 'routes.py'))}...",
+                create_routes_py(prj_name,app_name))
+    processes.append(f"Created {hl(join(prj_name, app_name, 'routes.py'))}")
+    process_ok(processes)
