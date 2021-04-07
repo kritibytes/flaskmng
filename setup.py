@@ -6,6 +6,12 @@ with open("README.md","r") as fh:
 
 psm = PSMReader('psm.json')
 
+def parse_requirements(filename):
+    """ load requirements from a pip requirements file """
+    lineiter = (line.strip() for line in open(filename))
+    return [line for line in lineiter if line and not line.startswith("#")]
+reqs = parse_requirements('requirements.txt')
+
 setuptools.setup(
     name=psm.get_name(),
     version=psm.get_version(),
@@ -23,6 +29,7 @@ setuptools.setup(
         "Topic :: Software Development",
         "Natural Language :: English"
     ],
+    install_requires=reqs,
     python_requires='>=3.6',
     entry_points='''
         [console_scripts]
