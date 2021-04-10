@@ -37,7 +37,7 @@ def startapp_command():
     process_ok(processes)
 
     # Taking app name
-    app_name = take_input("Enter name for app:")
+    app_name = make_compatible(take_input("Enter name for app:"))
 
     # Creating app folder
     prj_name = PSMReader().get_config().get('PROJECT_NAME', None)

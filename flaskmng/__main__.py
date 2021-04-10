@@ -3,10 +3,12 @@ import click
 
 from .startproject import startproject
 from .startapp import startapp
+from .removeapp import removeapp
 
 commands = [
     startproject,
-    startapp
+    startapp,
+    removeapp
 ]
 
 
