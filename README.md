@@ -22,12 +22,12 @@ To activate,
 Then, for installing flaskmng to the virtual environment you must use pip. After installing pip enter the command given below:
 
 ```bash
-> pip install flaskmng 
+> pip install flaskmng
 ```
 
 ### Startproject
 
-For creating main structure of your flask application and starting project: 
+For creating main structure of your flask application and starting project:
 
 ```bash
 > flaskmng startproject
@@ -36,6 +36,7 @@ For creating main structure of your flask application and starting project:
 Don't forget to add your virtual environment name to .gitignore file.
 
 ### Startapp
+
 Then, you can add multiple apps to your project. For creating single app structure:
 
 ```bash
@@ -43,6 +44,7 @@ Then, you can add multiple apps to your project. For creating single app structu
 ```
 
 ## Conclusion
+
 In conclusion, your flask project ready to development. Enjoy the advantages of flaskmng.
 
 **Thanks for using!**

@@ -30,6 +30,7 @@ setuptools.setup(
         "Natural Language :: English"
     ],
     install_requires=reqs,
+    setup_requires=reqs,
     python_requires='>=3.6',
     entry_points='''
         [console_scripts]

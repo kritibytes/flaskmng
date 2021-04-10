@@ -30,9 +30,6 @@ def startapp():
 
 @startapp.command("startapp")
 def startapp_command():
-    if not in_virtualenv():
-        raise Exception("You must be in virtual environment to run")
-    
     processes = []
     process_ok(processes)
 
