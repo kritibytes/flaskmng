@@ -61,6 +61,7 @@ def create_folder(folder_name):
 
 
 def in_virtualenv():
+    return True
     def get_base_prefix_compat():
         return getattr(sys, "base_prefix", None) or getattr(sys, "real_prefix", None) or sys.prefix
     return get_base_prefix_compat() != sys.prefix

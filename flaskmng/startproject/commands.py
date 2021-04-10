@@ -30,9 +30,6 @@ def startproject():
 
 @startproject.command("startproject")
 def startproject_command():
-    if not in_virtualenv():
-        raise Exception("You must be in virtual environment to run")
-    
     processes = []
     process_ok(processes)
 
