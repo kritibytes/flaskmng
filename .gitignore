@@ -9,3 +9,4 @@ flaskmng.egg-info
 **/__pycache__
 test/**/*
 .eggs
+docs/_build
