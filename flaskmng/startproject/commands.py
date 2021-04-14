@@ -29,6 +29,7 @@ def startproject():
 
 @startproject.command("startproject")
 def startproject_command():
+    """Create new project"""
     processes = []
     process_ok(processes)
 

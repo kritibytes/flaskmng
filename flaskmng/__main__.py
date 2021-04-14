@@ -16,6 +16,7 @@ commands = [
 main = click.CommandCollection(sources=commands)
 
 def command_line_interface():
+    print(main.short_decription)
     args = sys.argv
     if "--help" in args or len(args) == 1:
         process_ok([],False)

@@ -26,6 +26,7 @@ def removeapp():
 
 @removeapp.command("removeapp")
 def removeapp_command():
+    """Remove app in project"""
     psm = PSMReader()
     prj_name = psm.get_config().get('PROJECT_NAME', None)
     app_list = psm.get_config().get('APPS', None)

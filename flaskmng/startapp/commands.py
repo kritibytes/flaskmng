@@ -29,6 +29,7 @@ def startapp():
 
 @startapp.command("startapp")
 def startapp_command():
+    """Create new app inside project"""
     processes = []
     process_ok(processes)
 
