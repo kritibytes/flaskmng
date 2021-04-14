@@ -42,7 +42,7 @@ Command Line Interface
 .. click:: flaskmng.__main__:main
    :prog: flaskmng
    :nested: full
-   :commands: startproject,startapp,removeapp
+   :commands: startproject, startapp, removeapp
 
 Conclusion
 ##########
