@@ -4,6 +4,7 @@ import click
 from .startproject import startproject
 from .startapp import startapp
 from .removeapp import removeapp
+from .utils import process_ok
 
 commands = [
     startproject,
@@ -14,10 +15,10 @@ commands = [
 
 main = click.CommandCollection(sources=commands)
 
-if __name__ == '__main__':
+def command_line_interface():
     args = sys.argv
     if "--help" in args or len(args) == 1:
-        print("flaskmng")
+        process_ok([],False)
     try:
         main()
     except Exception as e:

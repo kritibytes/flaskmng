@@ -8,7 +8,6 @@ from ..utils import (
     process_ok,
     process_step,
     create_folder,
-    in_virtualenv,
     success_message,
     make_compatible,
     hl

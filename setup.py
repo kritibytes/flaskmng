@@ -34,6 +34,6 @@ setuptools.setup(
     python_requires='>=3.6',
     entry_points='''
         [console_scripts]
-        flaskmng=flaskmng.__main__:main
+        flaskmng=flaskmng.__main__:command_line_interface
     ''',
 )

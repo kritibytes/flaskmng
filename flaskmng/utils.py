@@ -41,8 +41,9 @@ def clear_screen():
         os.system("cls")
 
 
-def process_ok(finished_process):
-    clear_screen()
+def process_ok(finished_process, clear_flag=True):
+    if clear_flag:
+        clear_screen()
     text = pyfiglet.figlet_format("flaskmng", font="slant")
     print(text)
     for i in finished_process:
@@ -58,13 +59,6 @@ def create_folder(folder_name):
     def wrapper():
         os.mkdir(folder_name)
     return wrapper
-
-
-def in_virtualenv():
-    return True
-    def get_base_prefix_compat():
-        return getattr(sys, "base_prefix", None) or getattr(sys, "real_prefix", None) or sys.prefix
-    return get_base_prefix_compat() != sys.prefix
 
 
 def supports_color():
