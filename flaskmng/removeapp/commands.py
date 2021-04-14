@@ -19,12 +19,12 @@ from .utils import (
 )
 
 
-@click.group(cls=MultiCommand)
-def removeapp():
-    pass
+# @click.group(cls=MultiCommand)
+# def removeapp():
+#     pass
+from ..__main__ import main
 
-
-@removeapp.command("removeapp")
+@main.command("removeapp")
 def removeapp_command():
     """Remove app in project"""
     psm = PSMReader()

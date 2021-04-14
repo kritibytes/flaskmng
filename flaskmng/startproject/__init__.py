@@ -1,1 +1,1 @@
-from .commands import startproject
+from .commands import startproject_command

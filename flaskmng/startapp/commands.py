@@ -22,12 +22,11 @@ from .utils import (
 )
 
 
-@click.group(cls=MultiCommand)
-def startapp():
-    pass
-
-
-@startapp.command("startapp")
+# @click.group(cls=MultiCommand)
+# def startapp():
+#     pass
+from ..__main__ import main
+@main.command("startapp")
 def startapp_command():
     """Create new app inside project"""
     processes = []

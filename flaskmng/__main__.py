@@ -1,25 +1,21 @@
 import sys
 import click
 
-from .startproject import startproject
-from .startapp import startapp
-from .removeapp import removeapp
-from .utils import process_ok
+from .utils import process_ok, MultiCommand
 
-commands = [
-    startproject,
-    startapp,
-    removeapp
-]
+@click.group(cls=MultiCommand)
+def main():
+    pass
 
+from .startproject import startproject_command
+from .startapp import startapp_command
+from .removeapp import removeapp_command
 
-main = click.CommandCollection(sources=commands)
 
 def command_line_interface():
-    print(main.short_decription)
     args = sys.argv
     if "--help" in args or len(args) == 1:
-        process_ok([],False)
+        process_ok([], False)
     try:
         main()
     except Exception as e:

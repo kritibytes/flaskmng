@@ -1,1 +1,1 @@
-from .commands import removeapp
+from .commands import removeapp_command

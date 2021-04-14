@@ -21,13 +21,15 @@ from .utils import (
     create_gitignore
 )
 
-
-@click.group(cls=MultiCommand)
-def startproject():
-    pass
+from ..__main__ import main
 
 
-@startproject.command("startproject")
+# @click.group(cls=MultiCommand)
+# def startproject():
+#     pass
+
+
+@main.command("startproject")
 def startproject_command():
     """Create new project"""
     processes = []
