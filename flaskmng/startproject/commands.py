@@ -124,4 +124,4 @@ def startproject_command():
 
     # Output success message
     success_message(f"Successfully created project {hl(prj_name)}")
-    info_message(f"Use {hl('psm run')} to run your application")
+    info_message(f"Use {hl('psm start')} to run your application")

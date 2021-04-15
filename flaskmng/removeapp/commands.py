@@ -60,4 +60,4 @@ def removeapp_command():
 
     # Output success message
     success_message(f"Successfully removed {hl(app_name)}")
-    info_message(f"Use {hl('psm run')} to run your application")
+    info_message(f"Use {hl('psm start')} to run your application")
