@@ -43,7 +43,7 @@ def startproject_command():
 
     # Create psm.json
     command_process_step("Initializing PSM...",
-                        'psm init --template="blank"')
+                        'psm init --template="flaskmng"')
     processes.append("Initialized PSM")
     process_ok(processes)
 
