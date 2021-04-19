@@ -106,3 +106,15 @@ def take_input(text):
 
     answers = prompt(questions)
     return answers['data']
+
+def detect_venv():
+    for folders in [name for name in os.listdir(".") if os.path.isdir(name)]:
+        os.chdir(folders)
+        if "bin" in [name for name in os.listdir(".") if os.path.isdir(name)]:
+            os.chdir('bin')
+            if "activate" in os.listdir():
+                os.chdir("..")
+                os.chdir("..")
+                return folders
+            os.chdir('..')
+        os.chdir('..')

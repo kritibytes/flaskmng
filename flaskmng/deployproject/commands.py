@@ -11,7 +11,8 @@ from ..utils import (
     success_message,
     make_compatible,
     hl,
-    take_input
+    take_input,
+    detect_venv
 )
 from .utils import (
     remove_app,
