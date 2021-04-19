@@ -67,3 +67,20 @@ def deployproject_command():
         f"Created {hl(f'/etc/nginx/sites-available/{prj_name}')}")
     process_ok(processes)
 
+    # Link nginx file
+    command_process_step("Linking nginx file...", f"ln -s /etc/nginx/sites-available/{prj_name} /etc/nginx/sites-enabled")
+    processes.append("Linked nginx file")
+    process_ok(processes)
+
+    # Restart nginx
+    command_process_step("Restarting nginx...", "systemctl restart nginx")
+    processes.append("Restarted nginx")
+    process_ok(processes)
+
+    # Allowing Nginx
+    command_process_step("Allowing nginx...", "ufw allow 'Nginx Full'")
+    processes.append("Allowed nginx")
+    process_ok(processes)
+
+    # Show success message
+    success_message(f"Successfully deployed {hl(prj_name)}")
