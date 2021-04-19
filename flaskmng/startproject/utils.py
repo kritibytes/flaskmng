@@ -19,6 +19,7 @@ Flask-Mail
 Flask-Migrate
 Flask-SQLAlchemy
 Flask-WTF
+gunicorn
 idna
 isort
 itsdangerous
