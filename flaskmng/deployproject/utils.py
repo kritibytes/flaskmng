@@ -28,3 +28,19 @@ ExecStart={project_path}/{venv_name}/bin/gunicorn --workers 3 --bind unix:{proje
 WantedBy=multi-user.target\
 """)
     return wrapper
+
+def create_nginx_file(project_path,prj_name,domain_name):
+    def wrapper():
+        with open(f"/etc/nginx/sites-available/{prj_name}") as f:
+            f.write(f"""\
+server {{
+    listen 80;
+    server_name {domain_name} www.{domain_name};
+
+    location / {{
+        include proxy_params;
+        proxy_pass http://unix:{project_path}/{prj_name}.sock;
+    }}
+}}
+""")
+    return wrapper

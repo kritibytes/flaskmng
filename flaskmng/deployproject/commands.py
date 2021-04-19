@@ -18,7 +18,8 @@ from ..utils import (
 )
 from .utils import (
     create_wsgi_py,
-    create_service_file
+    create_service_file,
+    create_nginx_file
 )
 
 from ..__main__ import main
@@ -45,3 +46,25 @@ def deployproject_command():
     processes.append(
         f"Created {hl(f'/etc/systemd/system/{prj_name}.service')}")
     process_ok(processes)
+
+    # Starting project
+    command_process_step("Starting project...", f"systemctl start {prj_name}")
+    processes.append("Started project")
+    process_ok(processes)
+
+    # Enabling project
+    command_process_step("Enabling project...", f"systemctl enable {prj_name}")
+    processes.append("Enabled project")
+    process_ok(processes)
+
+    # Taking domain name as input
+    domain_name = take_input("Enter your domain name(without any subdomain): ")
+
+    # Creating project name file
+    process_step(f"Creating {hl(f'/etc/nginx/sites-available/{prj_name}')}...",
+                 create_nginx_file(project_path, prj_name, domain_name))
+    processes.append(
+        f"Created {hl(f'/etc/nginx/sites-available/{prj_name}')}")
+    process_ok(processes)
+
+    
