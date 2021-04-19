@@ -60,11 +60,10 @@ def deployproject_command():
     # Taking domain name as input
     domain_name = take_input("Enter your domain name(without any subdomain): ")
 
-    # Creating project name file
+    # Creating nginx file
     process_step(f"Creating {hl(f'/etc/nginx/sites-available/{prj_name}')}...",
                  create_nginx_file(project_path, prj_name, domain_name))
     processes.append(
         f"Created {hl(f'/etc/nginx/sites-available/{prj_name}')}")
     process_ok(processes)
 
-    
