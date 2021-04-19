@@ -1,8 +1,6 @@
 from os.path import join
-import click
 from python_script_manager.package import PSMReader
 from ..utils import (
-    MultiCommand,
     command_process_step,
     info_message,
     process_ok,
@@ -20,14 +18,7 @@ from .utils import (
     write_requirements,
     create_gitignore
 )
-
 from ..__main__ import main
-
-
-# @click.group(cls=MultiCommand)
-# def startproject():
-#     pass
-
 
 @main.command("startproject")
 def startproject_command():

@@ -1,9 +1,6 @@
 from os.path import join
-import click
 from python_script_manager.package import PSMReader
 from ..utils import (
-    MultiCommand,
-    command_process_step,
     info_message,
     process_ok,
     process_step,
@@ -20,12 +17,8 @@ from .utils import (
     create_routes_py,
     append_app_datas,
 )
-
-
-# @click.group(cls=MultiCommand)
-# def startapp():
-#     pass
 from ..__main__ import main
+
 @main.command("startapp")
 def startapp_command():
     """Create new app inside project"""

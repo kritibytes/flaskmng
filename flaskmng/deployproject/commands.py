@@ -1,17 +1,11 @@
-from os.path import join
 import os
 import getpass
-import click
 from python_script_manager.package import PSMReader
 from ..utils import (
-    MultiCommand,
     command_process_step,
-    info_message,
     process_ok,
     process_step,
-    create_folder,
     success_message,
-    make_compatible,
     hl,
     take_input,
     detect_venv
@@ -21,9 +15,7 @@ from .utils import (
     create_service_file,
     create_nginx_file
 )
-
 from ..__main__ import main
-
 
 @main.command("deployproject")
 def deployproject_command():

@@ -2,7 +2,6 @@ import click
 import os
 from sys import platform
 import sys
-import time
 import pyfiglet
 import re
 from PyInquirer import prompt
