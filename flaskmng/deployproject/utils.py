@@ -1,3 +1,4 @@
+import os
 def create_wsgi_py(project_name):
     def wrapper():
         with open("wsgi.py","w") as f:
@@ -11,7 +12,7 @@ if __name__ == "__main__":
 
 def create_service_file(project_path,project_name,username,venv_name):
     def wrapper():
-        with open(f"/etc/systemd/system/{project_name}.service") as f:
+        with open(f"/etc/systemd/system/{project_name}.service","w") as f:
             f.write(f"""\
 [Unit]
 Description=Gunicorn instance to serve {project_name}
@@ -31,7 +32,11 @@ WantedBy=multi-user.target\
 
 def create_nginx_file(project_path,prj_name,domain_name):
     def wrapper():
-        with open(f"/etc/nginx/sites-available/{prj_name}") as f:
+        try:
+            os.mkdir("/etc/nginx/sites-available")
+        except Exception as e:
+            pass
+        with open(f"/etc/nginx/sites-available/{prj_name}","w") as f:
             f.write(f"""\
 server {{
     listen 80;
