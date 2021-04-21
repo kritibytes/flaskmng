@@ -1,14 +1,18 @@
 import os
-def create_wsgi_py(project_name):
-    def wrapper():
-        with open("wsgi.py","w") as f:
-            f.write(f"""\
-from {project_name} import app
-
-if __name__ == "__main__":
-    app.run()\
+def create_app_ini():
+    with open("wsgi.py","w") as f:
+        f.write(f"""\
+[uwsgi]
+wsgi-file = app.py
+callable = app
+socket = :8080
+processes = 4
+threads = 2
+master = true
+chmod-socket = 660
+vacuum = true
+die-on-term = true\
 """)
-    return wrapper
 
 def create_service_file(project_path,project_name,username,venv_name):
     def wrapper():
