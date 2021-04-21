@@ -36,6 +36,7 @@ python-editor
 six
 SQLAlchemy
 toml
+uwsgi
 Werkzeug
 wrapt
 WTForms
