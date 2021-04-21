@@ -10,7 +10,7 @@ def main():
 from .startproject import startproject_command
 from .startapp import startapp_command
 from .removeapp import removeapp_command
-from .deployproject import deployproject_command
+from .deploysetup import deploysetup_command
 
 def command_line_interface():
     args = sys.argv

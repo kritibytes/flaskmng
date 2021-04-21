@@ -15,8 +15,8 @@ from .utils import (
 )
 from ..__main__ import main
 
-@main.command("deployproject")
-def deployproject_command():
+@main.command("deploysetup")
+def deploysetup_command():
     psm = PSMReader()
     prj_name = psm.get_config().get('PROJECT_NAME', None)
     processes = []
