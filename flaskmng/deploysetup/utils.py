@@ -49,3 +49,27 @@ services:
       - "80:80"
 """)
     return wrapper
+
+def create_nginx_conf():
+  os.mkdir('nginx')
+  with open(os.path.join('nginx', 'nginx.conf'), 'w') as f:
+    f.write("""\
+server {
+
+    listen 80;
+
+    location / {
+        include uwsgi_params;
+        uwsgi_pass flask:8080;
+    }
+
+}   
+""")
+
+def create_nginx_dockerfile():
+    with open("Dockerfile","w") as f:
+        f.write(f"""\
+FROM nginx
+RUN rm /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d/\
+""")
