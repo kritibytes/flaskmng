@@ -67,7 +67,7 @@ server {
 """)
 
 def create_nginx_dockerfile():
-    with open("Dockerfile","w") as f:
+    with open(os.path.join("nginx","Dockerfile"),"w") as f:
         f.write(f"""\
 FROM nginx
 RUN rm /etc/nginx/conf.d/default.conf
