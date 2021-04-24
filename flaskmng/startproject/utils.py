@@ -72,17 +72,18 @@ if __name__=='__main__':
 def create_env():
     with open('.env','w') as f:
         env_text = f"""\
-SQLALCHEMY_DATABASE_URI="sqlite:///../site.db"\
+SQLALCHEMY_DATABASE_URI="sqlite:///../site.db"
+SECRET_KEY={os.urandom(24).hex()}\
 """
         f.write(env_text)
 
 def create_config_py():
     with open('config.py', 'w') as f:
         config_py_text = f"""\
-import os
+from os import environ as env
 class Config:
-    SECRET_KEY = {os.urandom(16)}
-    SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI')
+    SECRET_KEY = env.get('SECRET_KEY')
+    SQLALCHEMY_DATABASE_URI = env.get('SQLALCHEMY_DATABASE_URI')
 """
         f.write(config_py_text)
 
