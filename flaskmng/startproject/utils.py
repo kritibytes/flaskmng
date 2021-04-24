@@ -52,7 +52,8 @@ venv
 **/__pycache__
 site.db
 migrations/versions/**/*
-config.py
+*.env
+.env
 """
         f.write(ignore_text)
 
@@ -68,14 +69,20 @@ if __name__=='__main__':
             f.write(app_py_text)
     return wrapper
 
+def create_env():
+    with open('.env','w') as f:
+        env_text = f"""\
+SQLALCHEMY_DATABASE_URI="sqlite:///../site.db"\
+"""
+        f.write(env_text)
+
 def create_config_py():
     with open('config.py', 'w') as f:
         config_py_text = f"""\
+import os
 class Config:
     SECRET_KEY = {os.urandom(16)}
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///../site.db'
-    DEBUG = True
-    DEVELOPMENT = True
+    SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI')
 """
         f.write(config_py_text)
 

@@ -16,7 +16,8 @@ from .utils import (
     create_config_py,
     create_app_py,
     write_requirements,
-    create_gitignore
+    create_gitignore,
+    create_env
 )
 from ..__main__ import main
 
@@ -78,6 +79,11 @@ def startproject_command():
     # Creating config.py
     process_step(f"Creating {hl('config.py')}...", create_config_py)
     processes.append(f"Created {hl('config.py')}")
+    process_ok(processes)
+
+    # Creating .env
+    process_step(f"Creating {hl('.env')}...", create_env)
+    processes.append(f"Created {hl('.env')}")
     process_ok(processes)
 
     # Creating project __init__.py
