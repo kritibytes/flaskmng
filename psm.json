@@ -1,1 +1,31 @@
-{"scripts": {"predeploy": {"command": "python setup.py sdist bdist_wheel", "description": "Build package"}, "deploy": {"command": "python -m twine upload --skip-existing --repository-url https://upload.pypi.org/legacy/ dist/*", "description": "Upload to PYPI"}, "test": {"command": "pytest -v", "description": ""}, "clear-test": {"command": "rm -rf test && mkdir test", "description": ""}}, "version": "1.3.4", "name": "flaskmng", "description": "Tool that makes managing Flask easy.", "author": "kritibytes", "author_email": "kritibytes@gmail.com", "url": "https://github.com/kritibytes/flaskmng#readme"}
+{
+    "author": "kritibytes",
+    "author_email": "kritibytes@gmail.com",
+    "config": {},
+    "dependencies": {
+        "common": [
+            "PyInquirer",
+            "click",
+            "python-script-manager",
+            "pyfiglet"
+        ],
+        "dev": [],
+        "prod": []
+    },
+    "description": "Tool that makes managing Flask easy.",
+    "environment": "",
+    "name": "flaskmng",
+    "scripts": {
+        "deploy": {
+            "command": "python -m twine upload --skip-existing --repository-url https://upload.pypi.org/legacy/ dist/*",
+            "description": "Upload to PYPI"
+        },
+        "predeploy": {
+            "command": "python setup.py sdist bdist_wheel",
+            "description": "Build package"
+        }
+    },
+    "url": "https://github.com/kritibytes/flaskmng#readme",
+    "use_environment": true,
+    "version": "1.3.4"
+}
