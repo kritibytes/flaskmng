@@ -1,5 +1,6 @@
 from os.path import join
-from python_script_manager.package import PSMReader
+from myp import MYPReader
+from myp import const as myp_const
 from ..utils import (
     command_process_step,
     info_message,
@@ -15,9 +16,8 @@ from .utils import (
     create_init_py,
     create_config_py,
     create_app_py,
-    write_requirements,
     create_gitignore,
-    create_env
+    create_env,
 )
 from ..__main__ import main
 
@@ -27,37 +27,32 @@ def startproject_command():
     processes = []
     process_ok(processes)
 
-    # Install PSM
+    # Install MYP
     command_process_step(
-        "Installing PSM...", "pip install --upgrade python-script-manager")
-    processes.append("Installed PSM")
+        "Installing MYP...", "pip install --upgrade myp")
+    processes.append("Installed MYP")
     process_ok(processes)
 
-    # Create psm.json
-    command_process_step("Initializing PSM...",
-                        'psm init --template="flaskmng"')
-    processes.append("Initialized PSM")
+    # Create myp.json
+    command_process_step("Initializing MYP...",
+                        'myp init --template="flaskmng"')
+    processes.append("Initialized MYP")
     process_ok(processes)
 
     # Create config field
-    psm = PSMReader('psm.json')
-    psm_config = psm.get_config()
-    psm_config["APPS"] = []
-    psm_config["PROJECT_NAME"] = make_compatible(psm.get_name())
-    psm.set_config(psm_config)
-    psm.write()
+    myp = MYPReader()
+    myp_config = myp.get_data("config")
+    myp_config["APPS"] = []
+    myp_config["PROJECT_NAME"] = make_compatible(myp.get_data("name"))
+    myp.set_data("config",myp_config)
+    myp.write()
 
-    prj_name = psm_config["PROJECT_NAME"]
+    prj_name = myp_config["PROJECT_NAME"]
 
-    # Creating requirements.txt
-    process_step("Creating requirements.txt", write_requirements)
-    processes.append("Created requirements.txt")
-    process_ok(processes)
-
-    # Installing requirements.txt
-    command_process_step(f"Installing {hl('requirements.txt')}...",
-                        'psm install && psm freeze')
-    processes.append(f"Installed {hl('requirements.txt')}")
+    # Installing dependencies
+    command_process_step(f"Installing dependencies from {hl(myp_const.filename)}...",
+                        'myp get:deps --dev')
+    processes.append(f"Installed dependencies from {hl(myp_const.filename)}")
     process_ok(processes)
 
     # Creating main app folder
@@ -121,4 +116,4 @@ def startproject_command():
 
     # Output success message
     success_message(f"Successfully created project {hl(prj_name)}")
-    info_message(f"Use {hl('psm start')} to run your application")
+    info_message(f"Use {hl('myp start')} to run your application")

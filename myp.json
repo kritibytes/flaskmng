@@ -6,10 +6,12 @@
         "common": [
             "PyInquirer",
             "click",
-            "python-script-manager",
+            "myp",
             "pyfiglet"
         ],
-        "dev": [],
+        "dev": [
+            "autopep8"
+        ],
         "prod": []
     },
     "description": "Tool that makes managing Flask easy.",
@@ -27,5 +29,5 @@
     },
     "url": "https://github.com/kritibytes/flaskmng#readme",
     "use_environment": true,
-    "version": "1.3.5"
+    "version": "1.3.6"
 }

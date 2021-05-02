@@ -1,50 +1,5 @@
 import os
 
-def write_requirements():
-    with open("requirements.txt", "w") as f:
-        reqs_text = '''\
-alembic
-astroid
-bcrypt
-blinker
-cffi
-click
-colorama
-dnspython
-email-validator
-Flask
-Flask-Bcrypt
-Flask-Login
-Flask-Mail
-Flask-Migrate
-Flask-SQLAlchemy
-Flask-WTF
-gunicorn
-idna
-isort
-itsdangerous
-Jinja2
-lazy-object-proxy
-Mako
-MarkupSafe
-mccabe
-Pillow
-pycparser
-pylint
-python-dateutil
-python-editor
-six
-SQLAlchemy
-toml
-uwsgi
-Werkzeug
-wrapt
-WTForms
-wheel
-'''
-        f.write(reqs_text)
-
-
 def create_gitignore():
     with open('.gitignore', 'w') as f:
         ignore_text = """\

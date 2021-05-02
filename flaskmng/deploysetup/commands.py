@@ -1,6 +1,7 @@
 import os
 import getpass
-from python_script_manager.package import PSMReader
+from typing import List
+from myp import MYPReader
 from ..utils import (
     process_ok,
     process_step,
@@ -16,25 +17,28 @@ from .utils import (
 )
 from ..__main__ import main
 
+
 @main.command("deploysetup")
 def deploysetup_command():
-    psm = PSMReader()
-    prj_name = psm.get_config().get('PROJECT_NAME', None)
-    processes = []
+    myp: MYPReader = MYPReader()
+    prj_name: str = myp.get_data("config").get('PROJECT_NAME', '')
+    processes: List[str] = []
     process_ok(processes)
-    
+
     # Creating app.ini
     process_step(f"Creating {hl('app.ini')}...", create_app_ini)
     processes.append(f"Created {hl('app.ini')}")
     process_ok(processes)
 
     # Creating Dockerfile for flask
-    process_step(f"Creating {hl('Dockerfile')} for {hl('flask')}...", create_flask_dockerfile)
+    process_step(
+        f"Creating {hl('Dockerfile')} for {hl('flask')}...", create_flask_dockerfile)
     processes.append(f"Created {hl('Dockerfile')} for {hl('flask')}")
     process_ok(processes)
 
     # Creating docker-compose.yml file
-    process_step(f"Creating {hl('docker-compose.yml')}...", create_docker_compose_yml(prj_name))
+    process_step(f"Creating {hl('docker-compose.yml')}...",
+                 create_docker_compose_yml(prj_name))
     processes.append(f"Created {hl('docker-compose.yml')}")
     process_ok(processes)
 
@@ -44,7 +48,8 @@ def deploysetup_command():
     process_ok(processes)
 
     # Creating Dockerfile for nginx
-    process_step(f"Creating {hl('Dockerfile')} for {hl('nginx')}...", create_nginx_dockerfile)
+    process_step(
+        f"Creating {hl('Dockerfile')} for {hl('nginx')}...", create_nginx_dockerfile)
     processes.append(f"Created {hl('Dockerfile')} for {hl('nginx')}")
     process_ok(processes)
 

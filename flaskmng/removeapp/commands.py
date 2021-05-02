@@ -1,5 +1,7 @@
 from os.path import join
-from python_script_manager.package import PSMReader
+from myp import MYPReader
+from myp import const as myp_const
+from typing import List
 from ..utils import (
     info_message,
     process_ok,
@@ -17,10 +19,10 @@ from ..__main__ import main
 @main.command("removeapp")
 def removeapp_command():
     """Remove app in project"""
-    psm = PSMReader()
-    prj_name = psm.get_config().get('PROJECT_NAME', None)
-    app_list = psm.get_config().get('APPS', None)
-    processes = []
+    myp:MYPReader = MYPReader()
+    prj_name:str = myp.get_data("config").get('PROJECT_NAME', '')
+    app_list:List[str] = myp.get_data("config").get('APPS', [])
+    processes:List[str] = []
     process_ok(processes)
 
     # Taking app name to remove
@@ -28,7 +30,7 @@ def removeapp_command():
 
     # Removing app folder
     if not prj_name :
-        raise Exception("You deleted your project name from psm.json file. Please add it.")
+        raise Exception(f"You deleted your project name from {myp_const.filename} file. Please add it.")
     if not app_name in app_list:
         raise Exception("Your app name is not in app list")
     process_step(f"Removing {hl(join(prj_name, app_name))} folder...",
@@ -36,11 +38,11 @@ def removeapp_command():
     processes.append(f"Removed {hl(join(prj_name, app_name))} folder")
     process_ok(processes)
 
-    # Removing app name from psm.json
-    psm_config = psm.get_config()
-    psm_config['APPS'].remove(app_name)
-    psm.set_config(psm_config)
-    psm.write()
+    # Removing app name from myp.json
+    myp_config = myp.get_config()
+    myp_config['APPS'].remove(app_name)
+    myp.set_config(myp_config)
+    myp.write()
 
     # Removing app modules from __init__.py
     process_step(f"Removing imports of {hl(app_name)} from {hl(join(prj_name, '__init__.py'))}...",
@@ -50,4 +52,4 @@ def removeapp_command():
 
     # Output success message
     success_message(f"Successfully removed {hl(app_name)}")
-    info_message(f"Use {hl('psm start')} to run your application")
+    info_message(f"Use {hl('myp start')} to run your application")
